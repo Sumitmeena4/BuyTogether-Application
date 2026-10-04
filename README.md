@@ -14,8 +14,6 @@ Create a shopping group, paste the conversation, and analyze it with the Gemini 
 
 The UI makes the transformation visible:
 
-**MESSY CHAT → GEMMA 4 → STRUCTURED REQUESTS → JAVA AGGREGATION → SHARED ORDER**
-
 ## Architecture
 
 ```text
@@ -45,16 +43,6 @@ The backend calls `https://generativelanguage.googleapis.com/v1beta/models/{GEMM
 - Override with `GEMMA_MODEL`
 - Live analysis requires a valid Gemini API key and access to the configured model. No mock or local fallback is used by the production analyze endpoint.
 
-## Run locally
-
-Prerequisites: Java 21, Node.js/npm, and Docker Compose.
-
-1. Copy `.env.example` to `.env` and add a valid `GEMINI_API_KEY`.
-2. Start PostgreSQL from the project root:
-
-   ```powershell
-   docker compose up -d postgres
-   ```
 
 3. In another terminal, start the backend from its project directory. Set the API key in your environment (or IDE run configuration):
 
@@ -66,8 +54,6 @@ Prerequisites: Java 21, Node.js/npm, and Docker Compose.
    $env:POSTGRES_PASSWORD = "postgres"
    .\mvnw.cmd spring-boot:run
    ```
-
-   Spring Boot reads `.env` only through the shell environment; to load the root `.env` automatically, set these variables in your terminal or IDE run configuration.
 
 4. In another terminal, start the frontend:
 
@@ -81,20 +67,6 @@ Prerequisites: Java 21, Node.js/npm, and Docker Compose.
 
 Set frontend `VITE_API_BASE_URL` only if the backend is not at `http://localhost:8080/api`; the Gemini key must remain on the backend.
 
-## Environment variables
-
-| Variable | Default | Used by |
-|---|---|---|
-| `GEMINI_API_KEY` | empty (required for live analysis) | Backend only |
-| `GEMMA_MODEL` | `gemma-4-26b-a4b-it` | Backend |
-| `POSTGRES_DB` | `buytogether` | PostgreSQL / backend |
-| `POSTGRES_USER` | `postgres` | PostgreSQL / backend |
-| `POSTGRES_PASSWORD` | `postgres` | PostgreSQL / backend |
-| `DATABASE_URL` | `jdbc:postgresql://localhost:5432/buytogether` | Backend |
-| `SERVER_PORT` | `8080` | Backend |
-| `VITE_API_BASE_URL` | `http://localhost:8080/api` | Frontend |
-
-Do not commit `.env` or real credentials.
 
 ## API overview
 
