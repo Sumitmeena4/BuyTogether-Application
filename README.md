@@ -43,31 +43,6 @@ The backend calls `https://generativelanguage.googleapis.com/v1beta/models/{GEMM
 - Override with `GEMMA_MODEL`
 - Live analysis requires a valid Gemini API key and access to the configured model. No mock or local fallback is used by the production analyze endpoint.
 
-
-3. In another terminal, start the backend from its project directory. Set the API key in your environment (or IDE run configuration):
-
-   ```powershell
-   cd backend/gemma-app
-   $env:GEMINI_API_KEY = "your-key"
-   $env:GEMMA_MODEL = "gemma-4-26b-a4b-it"
-   $env:POSTGRES_USER = "postgres"
-   $env:POSTGRES_PASSWORD = "postgres"
-   .\mvnw.cmd spring-boot:run
-   ```
-
-4. In another terminal, start the frontend:
-
-   ```powershell
-   cd frontend
-   npm install
-   npm run dev
-   ```
-
-5. Open the Vite URL shown in the terminal (normally `http://localhost:5173`), create a group, load the demo, and click **Analyze conversation**.
-
-Set frontend `VITE_API_BASE_URL` only if the backend is not at `http://localhost:8080/api`; the Gemini key must remain on the backend.
-
-
 ## API overview
 
 | Method | Endpoint | Purpose |
